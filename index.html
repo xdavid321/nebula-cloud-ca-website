@@ -1,0 +1,1109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nebula Cloud | AWS Cloud Consulting</title>
+<meta name="description" content="Nebula Cloud is an AWS cloud consulting firm. We design, build and operate secure, resilient Amazon Web Services environments.">
+<meta name="theme-color" content="#1E1B4B">
+<link rel="canonical" href="https://nebulacloud.ca/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nebula Cloud">
+<meta property="og:title" content="Nebula Cloud | AWS Cloud Consulting">
+<meta property="og:description" content="Nebula Cloud is an AWS cloud consulting firm. We design, build and operate secure, resilient Amazon Web Services environments.">
+<meta property="og:url" content="https://nebulacloud.ca/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+/* Layout: sticky header, full-width bands (white / mist / indigo) each with a 1180px inner column; hash-routed views. Single deliberate light look on brand indigo bands. */
+:root{
+  --ink:#0F172A;
+  --muted:#4B4C63;
+  --bg:#FFFFFF;
+  --mist:#F6F5FB;
+  --line:#E4E2EE;
+  --violet:#6D28D9;
+  --violet-hover:#5B21B6;
+  --violet-soft:#EDE7FB;
+  --violet-dark-tile:#7C3AED;
+  --indigo:#1E1B4B;
+  --indigo-2:#28245F;
+  --indigo-line:rgba(196,181,253,.22);
+  --lilac:#C4B5FD;
+  --on-dark:#FFFFFF;
+  --on-dark-muted:#C9C4EA;
+  --cyan:#22D3EE;
+  --ok:#0F766E;
+  --font-display:"Space Grotesk","Inter",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --max:1180px;
+  --radius:14px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;margin:0;text-wrap:balance;color:inherit}
+p{margin:0}
+a{color:var(--violet)}
+a:hover{color:var(--violet-hover)}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:4px}
+[id]{scroll-margin-top:96px}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.band{padding-block:88px}
+.band.tight{padding-block:64px}
+.band.mist{background:var(--mist)}
+.band.dark{background:var(--indigo);color:var(--on-dark)}
+.eyebrow{font-family:var(--font-display);font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--violet)}
+.dark .eyebrow{color:var(--lilac)}
+.h2{font-size:clamp(28px,3.4vw,40px);font-weight:700;letter-spacing:-.01em}
+.lead{font-size:18px;color:var(--muted);max-width:62ch}
+.dark .lead{color:var(--on-dark-muted)}
+.sec-head{display:grid;gap:14px;margin-bottom:44px;max-width:760px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:10px;font-family:var(--font-display);font-weight:500;font-size:16px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.btn-primary{background:var(--violet);color:#FFFFFF}
+.btn-primary:hover{background:var(--violet-hover);color:#FFFFFF}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--violet);color:var(--violet)}
+.dark .btn-ghost{color:var(--on-dark);border-color:var(--indigo-line)}
+.dark .btn-ghost:hover{border-color:var(--lilac);color:var(--lilac)}
+.dark .btn-primary{background:var(--violet-dark-tile)}
+.dark .btn-primary:hover{background:#6D28D9}
+.btn svg{width:18px;height:18px}
+
+/* Header */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand:hover{color:var(--ink)}
+.brand svg{width:40px;height:40px;flex:none}
+.wordmark{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.08em;font-size:18px;line-height:1;white-space:nowrap}
+.wordmark b{font-weight:700}
+.wordmark span{font-weight:400;color:var(--violet)}
+.dark .wordmark b{color:var(--on-dark)}
+.dark .wordmark span{color:var(--lilac)}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{font-family:var(--font-display);font-weight:500;font-size:15px;color:var(--ink);text-decoration:none;padding:10px 14px;border-radius:8px}
+.nav a:hover{background:var(--mist);color:var(--violet)}
+.nav a[aria-current="page"]{color:var(--violet)}
+.nav .btn{margin-left:10px;padding:0 18px;min-height:44px;font-size:15px}
+.nav .btn:hover{background:var(--violet-hover);color:#FFFFFF}
+.menu-btn{display:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);align-items:center;justify-content:center;cursor:pointer}
+.menu-btn svg{width:22px;height:22px}
+@media (max-width:900px){
+  .menu-btn{display:inline-flex}
+  .nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:2px;background:var(--bg);border-bottom:1px solid var(--line);padding:12px max(20px,env(safe-area-inset-right,0px)) 20px max(20px,env(safe-area-inset-left,0px));box-shadow:0 18px 30px -20px rgba(15,23,42,.35)}
+  .nav.open{display:flex}
+  .nav a{padding:12px 10px}
+  .nav .btn{margin:8px 0 0}
+}
+
+/* Hero */
+.hero{background:var(--indigo);color:var(--on-dark);position:relative;overflow:hidden}
+.hero .wrap{padding-block:96px 100px}
+.hero .wrap > div{max-width:860px}
+.hero h1{font-size:clamp(36px,5vw,58px);font-weight:700;letter-spacing:-.02em;margin:18px 0 22px}
+.hero h1 em{font-style:normal;color:var(--lilac)}
+.hero .lead{font-size:19px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:40px;padding-top:26px;border-top:1px solid var(--indigo-line);font-size:14px;color:var(--on-dark-muted)}
+.hero-meta span{display:inline-flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);display:inline-block;flex:none}
+.lz{background:var(--indigo-2);border:1px solid var(--indigo-line);border-radius:18px;padding:22px 22px 16px;min-width:0}
+.lz-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;font-family:var(--font-mono);font-size:12px;color:var(--on-dark-muted)}
+.lz-head b{font-family:var(--font-display);font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--lilac)}
+.lz svg{width:100%;height:auto;display:block}
+.lz-cap{font-size:13px;color:var(--on-dark-muted);margin-top:10px}
+@media (max-width:960px){.hero .wrap{padding-block:64px 72px}}
+/* AWS capability matrix */
+.caps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.cap{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:12px;align-content:start;min-width:0}
+.cap h3{font-size:17px;font-weight:700;display:flex;align-items:center;gap:10px}
+@media (max-width:1020px){.caps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.caps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.caps{grid-template-columns:1fr}}
+
+/* Focus strip */
+.strip{border-bottom:1px solid var(--line)}
+.strip .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;padding-block:22px}
+.strip-label{font-family:var(--font-display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;padding:6px 12px;border-radius:999px;background:var(--mist);border:1px solid var(--line);color:var(--ink)}
+
+/* Cards / grids */
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:960px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.grid-3,.grid-2{grid-template-columns:1fr}}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card h3{font-size:21px;font-weight:700}
+.card p{color:var(--muted)}
+.card .more{margin-top:auto;padding-top:8px;font-family:var(--font-display);font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.card .more:hover{text-decoration:underline}
+.icon{width:44px;height:44px;border-radius:11px;background:var(--violet-soft);color:var(--violet);display:flex;align-items:center;justify-content:center}
+.icon svg{width:22px;height:22px}
+
+/* Process */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--indigo-line)}
+.step{padding:28px 24px 8px 0;display:grid;gap:10px;align-content:start;min-width:0}
+.step + .step{padding-left:24px;border-left:1px solid var(--indigo-line)}
+.step-n{font-family:var(--font-mono);font-size:13px;color:var(--cyan)}
+.step h3{font-size:22px}
+.step p{color:var(--on-dark-muted);font-size:15px}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}.step:nth-child(3){padding-left:0;border-left:0}.step{border-bottom:1px solid var(--indigo-line);padding-bottom:24px}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}.step + .step{padding-left:0;border-left:0}}
+
+/* Pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--bg)}
+.pillar{padding:24px 26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:6px;min-width:0}
+.pillar:nth-child(3n){border-right:0}
+.pillar:nth-last-child(-n+3){border-bottom:0}
+.pillar h3{font-size:18px;display:flex;align-items:center;gap:10px}
+.pillar p{color:var(--muted);font-size:15px}
+@media (max-width:860px){.pillars{grid-template-columns:1fr 1fr}.pillar:nth-child(3n){border-right:1px solid var(--line)}.pillar:nth-child(2n){border-right:0}.pillar:nth-last-child(-n+3){border-bottom:1px solid var(--line)}.pillar:nth-last-child(-n+2){border-bottom:0}}
+@media (max-width:560px){.pillars{grid-template-columns:1fr}.pillar{border-right:0!important;border-bottom:1px solid var(--line)!important}.pillar:last-child{border-bottom:0!important}}
+
+/* Residency */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+@media (max-width:900px){.split{grid-template-columns:1fr;gap:36px}}
+.regions{display:grid;gap:12px}
+.region{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.region code{font-family:var(--font-mono);font-size:15px;color:var(--violet);font-weight:600}
+.region small{display:block;color:var(--muted);font-size:14px}
+.tag{font-size:12px;font-family:var(--font-display);letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--violet-soft);color:var(--violet);white-space:nowrap}
+
+/* Engagements */
+.engage .card{gap:14px}
+.engage .kicker{font-family:var(--font-mono);font-size:13px;color:var(--violet)}
+.ticks{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:9px}
+.ticks li{display:grid;grid-template-columns:18px 1fr;gap:10px;color:var(--ink);font-size:15px}
+.ticks li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);margin-top:8px;margin-left:4px}
+
+/* FAQ */
+.faq{display:grid;gap:12px;max-width:860px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 56px 20px 22px;font-family:var(--font-display);font-weight:500;font-size:18px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:22px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--violet);font-weight:400}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 22px 22px;color:var(--muted);max-width:70ch}
+
+/* CTA */
+.cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px}
+.cta h2{font-size:clamp(26px,3vw,36px);max-width:20ch}
+.cta p{color:var(--on-dark-muted);margin-top:12px;max-width:52ch}
+.cta-actions{display:flex;flex-wrap:wrap;gap:12px}
+
+/* Page header (inner pages) */
+.page-head{background:var(--indigo);color:var(--on-dark)}
+.page-head .wrap{padding-block:72px 64px;display:grid;gap:16px}
+.page-head h1{font-size:clamp(34px,4.4vw,52px);font-weight:700;letter-spacing:-.02em;max-width:22ch}
+.crumbs{font-size:14px;color:var(--on-dark-muted)}
+.crumbs a{color:var(--lilac);text-decoration:none}
+.crumbs a:hover{color:var(--on-dark);text-decoration:underline}
+
+/* Services detail */
+.svc-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.svc-nav a{font-size:14px;text-decoration:none;padding:8px 14px;border-radius:999px;border:1px solid var(--line);color:var(--ink);background:var(--bg)}
+.svc-nav a:hover{border-color:var(--violet);color:var(--violet)}
+.svc{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;padding-block:52px;border-top:1px solid var(--line)}
+.svc:first-of-type{border-top:0}
+.svc h2{font-size:30px;margin:14px 0 14px}
+.svc .lead{font-size:17px}
+.svc-detail{display:grid;gap:24px;min-width:0}
+.svc-detail h3{font-size:14px;font-family:var(--font-display);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:10px}
+.tools{display:flex;flex-wrap:wrap;gap:6px}
+.tools span{font-family:var(--font-mono);font-size:13px;padding:5px 10px;border-radius:6px;background:var(--mist);border:1px solid var(--line);color:var(--ink)}
+.deliv{border-left:3px solid var(--violet);padding:4px 0 4px 16px;color:var(--ink);font-size:15px}
+@media (max-width:900px){.svc{grid-template-columns:1fr;gap:24px}}
+
+/* About */
+.prose{display:grid;gap:18px;max-width:68ch;font-size:17px;color:var(--ink)}
+.prose p{color:var(--muted)}
+.principles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
+.principle{padding:24px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:28px 1fr;gap:14px;min-width:0}
+.principle .dot{margin-top:9px}
+.principle h3{font-size:20px;margin-bottom:6px}
+.principle p{color:var(--muted)}
+@media (max-width:760px){.principles{grid-template-columns:1fr}}
+.facts{display:grid;gap:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg);overflow:hidden}
+.fact{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 20px;border-bottom:1px solid var(--line);font-size:15px}
+.fact:last-child{border-bottom:0}
+.fact dt{color:var(--muted)}
+.fact dd{margin:0;font-weight:500;min-width:0;overflow-wrap:anywhere}
+@media (max-width:480px){.fact{grid-template-columns:1fr;gap:2px}}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:start}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+.contact-aside{display:grid;gap:22px}
+.email-box{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:var(--bg);display:grid;gap:12px}
+.email-box .label{font-size:13px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-family:var(--font-display)}
+.email-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.email-row a{font-family:var(--font-display);font-size:20px;font-weight:500;text-decoration:none;overflow-wrap:anywhere;user-select:all}
+.copy-btn{min-height:40px;padding:0 14px;border-radius:8px;border:1px solid var(--line);background:var(--bg);font-family:var(--font-display);font-size:14px;cursor:pointer;color:var(--ink)}
+.copy-btn:hover{border-color:var(--violet);color:var(--violet)}
+form.card{gap:18px;padding:32px}
+.field{display:grid;gap:7px}
+.field label{font-weight:600;font-size:14px}
+.field .opt{font-weight:400;color:var(--muted)}
+.field input,.field select,.field textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid #CFCBDD;border-radius:10px;padding:12px 14px;min-height:48px;width:100%}
+.field textarea{min-height:150px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 3px var(--violet-soft)}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.row-2{grid-template-columns:1fr}}
+.check{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:14px;color:var(--muted);align-items:start}
+.check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--violet)}
+.form-note{font-size:13px;color:var(--muted)}
+.form-error{color:#B42318;font-size:14px;font-weight:500}
+.result{border:1px solid var(--line);border-radius:var(--radius);background:var(--mist);padding:26px;display:grid;gap:14px}
+.result h3{font-size:22px}
+.result pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--font-mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;max-height:280px;overflow:auto;color:var(--ink)}
+.result-actions{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Legal */
+.legal{display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px;align-items:start}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 96px);display:grid;gap:4px;font-size:14px}
+.toc b{font-family:var(--font-display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:6px}
+.toc a{text-decoration:none;color:var(--ink);padding:5px 0}
+.toc a:hover{color:var(--violet)}
+.legal-body{max-width:72ch;display:grid;gap:14px;font-size:16px}
+.legal-body .meta{font-size:14px;color:var(--muted);padding-bottom:18px;border-bottom:1px solid var(--line)}
+.legal-body h2{font-size:22px;margin-top:22px;padding-top:4px}
+.legal-body p,.legal-body li{color:#33344A}
+.legal-body ul{margin:0;padding-left:22px;display:grid;gap:6px}
+.legal-body strong{color:var(--ink)}
+@media (max-width:900px){.legal{grid-template-columns:1fr;gap:28px}.toc{position:static;border:1px solid var(--line);border-radius:12px;padding:18px 20px}}
+
+/* Footer */
+.site-footer{background:var(--indigo);color:var(--on-dark-muted);font-size:15px}
+.site-footer .wrap{padding-block:64px 40px;display:grid;gap:44px}
+.foot-top{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:36px}
+@media (max-width:860px){.foot-top{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.foot-top{grid-template-columns:1fr}}
+.foot-brand{display:grid;gap:16px;align-content:start}
+.foot-brand .brand{color:var(--on-dark)}
+.tagline{font-family:var(--font-display);font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--lilac)}
+.foot-col{display:grid;gap:8px;align-content:start}
+.foot-col h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark);font-weight:500;margin-bottom:6px}
+.foot-col a{color:var(--on-dark-muted);text-decoration:none;overflow-wrap:anywhere}
+.foot-col a:hover{color:var(--on-dark);text-decoration:underline}
+.foot-bottom{border-top:1px solid var(--indigo-line);padding-top:24px;display:grid;gap:10px;font-size:13px}
+.foot-bottom .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px}
+.foot-bottom a{color:var(--on-dark-muted)}
+.foot-bottom a:hover{color:var(--on-dark)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.to-top{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:40;width:48px;height:48px;border-radius:12px;border:1px solid var(--indigo-line);background:var(--indigo);color:var(--on-dark);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 24px -10px rgba(15,23,42,.55);transition:background .15s}
+.to-top:hover{background:var(--violet)}
+.to-top svg{width:20px;height:20px}
+</style>
+</head>
+<body>
+<!-- Brand mark (Concept C monogram), reused via <use> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 120 120">
+      <rect x="0" y="0" width="120" height="120" rx="30" style="fill:var(--tile,#6D28D9)"></rect>
+      <rect x="6" y="6" width="108" height="108" rx="25" fill="none" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="1.5"></rect>
+      <g transform="translate(60 60) scale(0.9) skewX(-15) translate(-60 -60)">
+        <polygon points="26,90 26,38 34,30 40,30 40,90" fill="#FFFFFF"></polygon>
+        <polygon points="43,30 57,30 75,90 61,90" fill="#FFFFFF"></polygon>
+        <polygon points="78,48 92,48 92,82 84,90 78,90" fill="#FFFFFF"></polygon>
+        <circle cx="85" cy="38" r="7" fill="#22D3EE"></circle>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="Nebula Cloud home">
+      <svg aria-hidden="true" style="--tile:#6D28D9"><use href="#mark"></use></svg>
+      <span class="wordmark"><b>Nebula</b> <span>Cloud</span></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    </button>
+    <nav class="nav" id="siteNav" aria-label="Main">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#services" data-nav="services">Services</a>
+      <a href="#about" data-nav="about">About</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+      <a class="btn btn-primary" href="#contact">Book a consultation</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ================= HOME ================= -->
+<div data-view="home">
+  <section class="hero dark">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">AWS cloud consulting</div>
+        <h1>AWS environments that stay <em>secure, resilient</em> and operational.</h1>
+        <p class="lead">Nebula Cloud designs, builds and runs Amazon Web Services infrastructure for organizations around the world, from the first landing zone to everyday operations.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#contact">Book a consultation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </a>
+          <a class="btn btn-ghost" href="#services">Explore services</a>
+        </div>
+        <div class="hero-meta">
+          <span><i class="dot"></i>Secure by default</span>
+          <span><i class="dot"></i>Infrastructure as code</span>
+          <span><i class="dot"></i>CI/CD automation</span>
+          <span><i class="dot"></i>Monitoring &amp; observability</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">What we do</div>
+        <h2 class="h2">End-to-end AWS engineering for your business.</h2>
+        <p class="lead">Bring us in for a single project or for the whole lifecycle. Every engagement is delivered as code, documented, and handed over in a state your team can run.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></div>
+          <h3>Landing zones &amp; architecture</h3>
+          <p>Multi-account AWS foundations with identity, networking, logging and guardrails set up correctly from the start.</p>
+          <a class="more" href="#svc-foundations">Learn more →</a>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17h12M12 13l4 4-4 4"></path><path d="M20 7H8M12 3 8 7l4 4"></path></svg></div>
+          <h3>Cloud migration</h3>
+          <p>Move servers, databases and applications from on-premises or another provider to AWS with a tested cutover plan.</p>
+          <a class="more" href="#svc-migration">Learn more →</a>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"></path></svg></div>
+          <h3>Infrastructure as code &amp; DevOps</h3>
+          <p>AWS CDK, Terraform and CloudFormation, with CI/CD pipelines and policy checks so every change is reviewed and repeatable.</p>
+          <a class="more" href="#svc-iac">Learn more →</a>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+          <h3>Security &amp; compliance</h3>
+          <p>IAM least privilege, encryption, threat detection and audit-ready evidence mapped to the controls you report against.</p>
+          <a class="more" href="#svc-security">Learn more →</a>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"></path><path d="m7 14 4-4 3 3 5-6"></path></svg></div>
+          <h3>Cost optimization</h3>
+          <p>Find and remove waste, right-size workloads, and put tagging, budgets and Savings Plans in place so spend stays predictable.</p>
+          <a class="more" href="#svc-cost">Learn more →</a>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"></path></svg></div>
+          <h3>Managed operations</h3>
+          <p>Monitoring, alerting, patching, backups and incident response for the environments we build or inherit.</p>
+          <a class="more" href="#svc-operations">Learn more →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band mist" id="integrations">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Integrations</div>
+        <h2 class="h2">Works with the tools your team already uses.</h2>
+        <p class="lead">We connect AWS to your existing source control, pipelines, monitoring and identity systems, so your engineers keep their workflow and gain a reliable path to production.</p>
+      </div>
+      <div style="display:grid;gap:20px">
+        <div class="grid-3">
+          <article class="card">
+            <span class="kicker" style="font-family:var(--font-mono);font-size:13px;color:var(--violet)">Source control → AWS</span>
+            <h3>Keyless CI/CD</h3>
+            <p>GitHub Actions and GitLab CI/CD authenticate to AWS through OpenID Connect and short-lived IAM roles. No long-lived access keys stored in your pipelines.</p>
+          </article>
+          <article class="card">
+            <span class="kicker" style="font-family:var(--font-mono);font-size:13px;color:var(--violet)">Pull request → production</span>
+            <h3>Reviewed changes</h3>
+            <p>Every infrastructure change starts as a pull or merge request, with plan output, policy checks and security scans posted for review before anything is applied.</p>
+          </article>
+          <article class="card">
+            <span class="kicker" style="font-family:var(--font-mono);font-size:13px;color:var(--violet)">AWS → your team</span>
+            <h3>Unified alerting</h3>
+            <p>CloudWatch alarms, EventBridge events and Security Hub findings are routed to Datadog, Grafana, PagerDuty, Slack or Teams, wherever your team already responds.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">How we work</div>
+        <h2 class="h2">A clear path from first call to steady state.</h2>
+      </div>
+      <ol class="steps" style="list-style:none;padding:0;margin:0">
+        <li class="step"><span class="step-n">01 · Assess</span><h3>Understand</h3><p>We review your current environment, goals, constraints and risks, then agree on scope and success criteria in writing.</p></li>
+        <li class="step"><span class="step-n">02 · Design</span><h3>Plan</h3><p>Target architecture, security model and cost estimate, documented and reviewed with your team before anything is built.</p></li>
+        <li class="step"><span class="step-n">03 · Build</span><h3>Deliver</h3><p>Everything is built as code in your accounts and repositories, tested in lower environments, then promoted to production.</p></li>
+        <li class="step"><span class="step-n">04 · Operate</span><h3>Run &amp; improve</h3><p>Handover with runbooks and training, or ongoing operations from us with regular reviews of security, reliability and cost.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band mist">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Our standard</div>
+        <h2 class="h2">Built against the AWS Well-Architected Framework.</h2>
+        <p class="lead">Every design decision is checked against the six pillars AWS uses to evaluate workloads, so trade-offs are made on purpose and written down.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><h3><i class="dot"></i>Operational excellence</h3><p>Automated deployments, runbooks and observability so changes are routine.</p></div>
+        <div class="pillar"><h3><i class="dot"></i>Security</h3><p>Least-privilege access, encryption everywhere and detective controls on by default.</p></div>
+        <div class="pillar"><h3><i class="dot"></i>Reliability</h3><p>Multi-AZ designs, tested backups and recovery objectives you can prove.</p></div>
+        <div class="pillar"><h3><i class="dot"></i>Performance efficiency</h3><p>The right compute, storage and database for each workload, measured under load.</p></div>
+        <div class="pillar"><h3><i class="dot"></i>Cost optimization</h3><p>Spend tied to owners and workloads, with commitments sized to real usage.</p></div>
+        <div class="pillar"><h3><i class="dot"></i>Sustainability</h3><p>Efficient resource use and managed services that reduce idle capacity.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band engage">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Engagement models</div>
+        <h2 class="h2">Start small or bring us in for the long run.</h2>
+        <p class="lead">Pricing is quoted per engagement after an initial consultation, so you only pay for the scope you need.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <span class="kicker">Fixed scope</span>
+          <h3>Assessment</h3>
+          <p>A focused review of an existing AWS environment with a prioritized findings report.</p>
+          <ul class="ticks"><li>Well-Architected or security review</li><li>Cost and waste analysis</li><li>Remediation roadmap</li></ul>
+        </article>
+        <article class="card">
+          <span class="kicker">Statement of work</span>
+          <h3>Project delivery</h3>
+          <p>A defined outcome delivered against milestones, from a landing zone to a full migration.</p>
+          <ul class="ticks"><li>Agreed scope and timeline</li><li>All work delivered as code</li><li>Documentation and handover</li></ul>
+        </article>
+        <article class="card">
+          <span class="kicker">Monthly</span>
+          <h3>Ongoing support</h3>
+          <p>A retained team for operations, improvements and on-demand AWS expertise.</p>
+          <ul class="ticks"><li>Monitoring and incident response</li><li>Monthly cost and security reviews</li><li>Reserved engineering hours</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band mist">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Questions</div>
+        <h2 class="h2">Frequently asked questions</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Who maintains the infrastructure after it's built?</summary><p>You can choose the option that suits your team:</p><ul class="ticks" style="margin:0;padding:0 22px 16px"><li><span><strong>Your team maintains it.</strong> We build in your AWS accounts and repositories, then hand over the infrastructure code, documentation and runbooks, with a walkthrough so your engineers can run and change it confidently.</span></li><li><span><strong>We maintain it for you.</strong> Under an ongoing support agreement, we take care of monitoring, patching, backups, security updates, cost reviews and changes, so your team can stay focused on your product.</span></li></ul><p>You can also start with one option and move to the other later, for example by having us manage operations until your team is ready to take over.</p></details>
+        <details><summary>Can you work with our existing tools?</summary><p>Yes. We integrate AWS with the source control, CI/CD, monitoring, alerting and identity tools you already use, such as GitHub, GitLab, GitHub Actions, Jenkins, Datadog, Grafana, PagerDuty and Okta. Where a tool is missing, we recommend options and explain the trade-offs.</p></details>
+        <details><summary>Can you take over an environment someone else built?</summary><p>Yes. We usually start with an assessment to understand what exists, bring it under code where practical, and close any urgent security gaps before taking on day-to-day operations.</p></details>
+        <details><summary>Will you need access to our AWS accounts?</summary><p>For most work, yes. We use role-based access you control, with multi-factor authentication, scoped permissions and logging, and you can revoke it at any time.</p></details>
+        <details><summary>How do we get started?</summary><p>Send us a note at support@nebulacloud.ca or use the contact form. We'll set up a short call to understand your goals, then send a written proposal with scope and pricing.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark tight">
+    <div class="wrap cta">
+      <div>
+        <h2>Let's talk about your Cloud environment.</h2>
+        <p>Tell us where you are today and where you want to be. We'll come back with a clear next step.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="#contact">Book a consultation</a>
+        <a class="btn btn-ghost" href="#services">View services</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<div data-view="services" hidden>
+  <section class="page-head dark">
+    <div class="wrap">
+      <div class="crumbs"><a href="#home">Home</a> / Services</div>
+      <div class="eyebrow">Services</div>
+      <h1>AWS consulting services, from foundation to operations.</h1>
+      <p class="lead">Each service can be engaged on its own or combined into a single program of work.</p>
+    </div>
+  </section>
+
+  <section class="band tight">
+    <div class="wrap">
+      <nav class="svc-nav" aria-label="Services on this page">
+        <a href="#svc-foundations">Landing zones</a><a href="#svc-migration">Migration</a><a href="#svc-iac">IaC &amp; DevOps</a><a href="#svc-security">Security</a><a href="#svc-cost">Cost</a><a href="#svc-modern">Containers &amp; serverless</a><a href="#svc-operations">Operations</a>
+      </nav>
+
+      <div class="svc" id="svc-foundations">
+        <div>
+          <div class="eyebrow">Foundations</div>
+          <h2>Landing zones &amp; architecture</h2>
+          <p class="lead">A well-built foundation makes everything after it faster and safer. We set up a multi-account AWS environment with identity, networking, logging and guardrails ready before your first workload lands.</p>
+        </div>
+        <div class="svc-detail">
+          <div><h3>What's included</h3><ul class="ticks"><li>Account and organizational unit structure</li><li>Single sign-on with your identity provider</li><li>Centralized logging and audit accounts</li><li>Network design with Transit Gateway or VPC sharing</li><li>Service control policies and region guardrails</li><li>Architecture reviews for new workloads</li></ul></div>
+          <div><h3>Typical AWS services</h3><div class="tools"><span>Organizations</span><span>Control Tower</span><span>IAM Identity Center</span><span>Transit Gateway</span><span>VPC</span><span>CloudTrail</span><span>Config</span></div></div>
+          <p class="deliv"><strong>You receive:</strong> a deployed landing zone defined in code, architecture diagrams, and an operating guide.</p>
+        </div>
+      </div>
+
+      <div class="svc" id="svc-migration">
+        <div>
+          <div class="eyebrow">Migration</div>
+          <h2>Cloud migration</h2>
+          <p class="lead">We plan and run migrations to AWS with a focus on low risk: discovery first, a pilot wave, then repeatable waves with rehearsed cutovers and rollback plans.</p>
+        </div>
+        <div class="svc-detail">
+          <div><h3>What's included</h3><ul class="ticks"><li>Discovery and dependency mapping</li><li>Migration strategy per application (rehost, replatform, refactor)</li><li>Total cost of ownership estimate</li><li>Database migration with minimal downtime</li><li>Cutover runbooks and rollback plans</li><li>Post-migration optimization</li></ul></div>
+          <div><h3>Typical AWS services</h3><div class="tools"><span>Application Migration Service</span><span>Database Migration Service</span><span>DataSync</span><span>Migration Hub</span><span>RDS</span><span>Aurora</span></div></div>
+          <p class="deliv"><strong>You receive:</strong> a migration plan, migrated workloads running in AWS, and a decommissioning checklist for the old environment.</p>
+        </div>
+      </div>
+
+      <div class="svc" id="svc-iac">
+        <div>
+          <div class="eyebrow">Automation</div>
+          <h2>Infrastructure as code &amp; DevOps</h2>
+          <p class="lead">Infrastructure that lives in version control can be reviewed, tested and rebuilt. We write it in the tool that suits your team and wire it into pipelines with policy checks before deployment.</p>
+        </div>
+        <div class="svc-detail">
+          <div><h3>What's included</h3><ul class="ticks"><li>AWS CDK, Terraform or CloudFormation codebases</li><li>CI/CD pipelines for infrastructure and applications</li><li>Policy-as-code checks before deployment</li><li>Reusable modules and constructs for your team</li><li>Drift detection and remediation</li><li>Conversion of hand-built resources into code</li><li>OIDC federation from GitHub and GitLab into AWS</li></ul></div>
+          <div><h3>Typical tools</h3><div class="tools"><span>AWS CDK</span><span>Terraform</span><span>CloudFormation</span><span>CodePipeline</span><span>Open Policy Agent</span><span>Checkov</span></div></div>
+          <div><h3>Source control &amp; pipelines</h3><div class="tools"><span>GitHub</span><span>GitLab</span><span>Bitbucket</span><span>GitHub Actions</span><span>GitLab CI/CD</span><span>Jenkins</span><span>Argo CD</span></div></div>
+          <p class="deliv"><strong>You receive:</strong> repositories, pipelines and contribution guidelines your engineers can maintain.</p>
+        </div>
+      </div>
+
+      <div class="svc" id="svc-security">
+        <div>
+          <div class="eyebrow">Security</div>
+          <h2>Security &amp; compliance</h2>
+          <p class="lead">We harden AWS environments against real threats and help you produce the evidence auditors and customers ask for, whether that's a SOC 2 report, a security questionnaire or an internal policy.</p>
+        </div>
+        <div class="svc-detail">
+          <div><h3>What's included</h3><ul class="ticks"><li>IAM review and least-privilege redesign</li><li>Encryption at rest and in transit with managed keys</li><li>Threat detection and centralized findings</li><li>Vulnerability and configuration scanning</li><li>Control mapping and audit evidence collection</li><li>Incident response playbooks</li></ul></div>
+          <div><h3>Typical AWS services</h3><div class="tools"><span>Security Hub</span><span>GuardDuty</span><span>KMS</span><span>Inspector</span><span>Macie</span><span>WAF</span><span>Audit Manager</span></div></div>
+          <p class="deliv"><strong>You receive:</strong> a findings report with severity ratings, remediated controls, and a control-to-evidence map.</p>
+        </div>
+      </div>
+
+      <div class="svc" id="svc-cost">
+        <div>
+          <div class="eyebrow">FinOps</div>
+          <h2>Cost optimization</h2>
+          <p class="lead">Most AWS bills carry waste: idle resources, oversized instances and commitments that no longer match usage. We find it, remove it, and set up the visibility to keep it from coming back.</p>
+        </div>
+        <div class="svc-detail">
+          <div><h3>What's included</h3><ul class="ticks"><li>Spend analysis by account, service and team</li><li>Right-sizing and idle resource cleanup</li><li>Savings Plans and Reserved Instance strategy</li><li>Tagging standards and cost allocation</li><li>Budgets, anomaly alerts and reporting</li><li>Storage lifecycle and data transfer review</li></ul></div>
+          <div><h3>Typical AWS services</h3><div class="tools"><span>Cost Explorer</span><span>Cost and Usage Report</span><span>Budgets</span><span>Compute Optimizer</span><span>Cost Anomaly Detection</span></div></div>
+          <p class="deliv"><strong>You receive:</strong> a prioritized savings plan with estimated impact, implemented changes, and a cost dashboard.</p>
+        </div>
+      </div>
+
+      <div class="svc" id="svc-modern">
+        <div>
+          <div class="eyebrow">Modernization</div>
+          <h2>Containers &amp; serverless</h2>
+          <p class="lead">When it's time to move beyond virtual machines, we help you choose the right model for each application and build a platform your developers can deploy to safely.</p>
+        </div>
+        <div class="svc-detail">
+          <div><h3>What's included</h3><ul class="ticks"><li>Container platforms on ECS or EKS</li><li>Serverless applications and event-driven design</li><li>API design and edge delivery</li><li>Autoscaling and load testing</li><li>Developer self-service templates</li><li>Observability for distributed systems</li></ul></div>
+          <div><h3>Typical AWS services</h3><div class="tools"><span>ECS</span><span>EKS</span><span>Fargate</span><span>Lambda</span><span>API Gateway</span><span>EventBridge</span><span>Step Functions</span><span>CloudFront</span></div></div>
+          <p class="deliv"><strong>You receive:</strong> a running platform, deployment templates, and documentation for your developers.</p>
+        </div>
+      </div>
+
+      <div class="svc" id="svc-operations">
+        <div>
+          <div class="eyebrow">Operations</div>
+          <h2>Managed operations &amp; support</h2>
+          <p class="lead">Once you're live, we can keep things running: watching for problems, responding when they happen, and making steady improvements to security, reliability and cost.</p>
+        </div>
+        <div class="svc-detail">
+          <div><h3>What's included</h3><ul class="ticks"><li>Monitoring, dashboards and alert routing</li><li>Incident response and root-cause reports</li><li>Patching and backup management</li><li>Disaster recovery testing</li><li>Monthly operations, security and cost reviews</li><li>Reserved hours for changes and advice</li></ul></div>
+          <div><h3>Typical AWS services</h3><div class="tools"><span>CloudWatch</span><span>Systems Manager</span><span>AWS Backup</span><span>Elastic Disaster Recovery</span><span>X-Ray</span></div></div>
+          <div><h3>Integrates with</h3><div class="tools"><span>Datadog</span><span>Grafana</span><span>Prometheus</span><span>New Relic</span><span>PagerDuty</span><span>Opsgenie</span><span>Slack</span><span>Microsoft Teams</span><span>Jira</span><span>ServiceNow</span></div></div>
+          <p class="deliv"><strong>You receive:</strong> a defined support scope, response targets agreed in your contract, and a monthly report.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark tight">
+    <div class="wrap cta">
+      <div>
+        <h2>Not sure which service you need?</h2>
+        <p>Start with a conversation. We'll recommend the smallest engagement that solves the problem.</p>
+      </div>
+      <div class="cta-actions"><a class="btn btn-primary" href="#contact">Contact us</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<div data-view="about" hidden>
+  <section class="page-head dark">
+    <div class="wrap">
+      <div class="crumbs"><a href="#home">Home</a> / About</div>
+      <div class="eyebrow">About Nebula Cloud</div>
+      <h1>A cloud consultancy built around AWS.</h1>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap split" style="align-items:start">
+      <div class="prose">
+        <h2 class="h2">Why we exist</h2>
+        <p>Many organizations move to AWS quickly and end up with environments that work but are hard to secure, expensive to run, and understood by only one or two people. Nebula Cloud was founded to fix that.</p>
+        <p>Our team brings together cloud architecture, infrastructure automation, security and operations expertise on Amazon Web Services. We build AWS environments the way we'd want to inherit them: written as code, documented, and secure by default.</p>
+        <p>We work with startups, growing businesses and established organizations worldwide, delivering projects remotely and on-site by arrangement.</p>
+      </div>
+      <dl class="facts">
+        <div class="fact"><dt>Platform</dt><dd>Amazon Web Services (AWS)</dd></div>
+        <div class="fact"><dt>Serving</dt><dd>Clients worldwide</dd></div>
+        <div class="fact"><dt>Delivery</dt><dd>Remote, with on-site visits by arrangement</dd></div>
+        <div class="fact"><dt>Languages</dt><dd>English</dd></div>
+        <div class="fact"><dt>Contact</dt><dd><a href="mailto:support@nebulacloud.ca">support@nebulacloud.ca</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="band mist">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Principles</div>
+        <h2 class="h2">How we approach every engagement.</h2>
+      </div>
+      <div class="principles">
+        <div class="principle"><i class="dot"></i><div><h3>Everything as code</h3><p>If it can't be rebuilt from a repository, it isn't finished. Infrastructure, policies and pipelines all live in version control.</p></div></div>
+        <div class="principle"><i class="dot"></i><div><h3>Secure by default</h3><p>Least privilege, encryption and logging are part of the first build, not a later phase.</p></div></div>
+        <div class="principle"><i class="dot"></i><div><h3>You own the result</h3><p>Work happens in your accounts and repositories. No proprietary tooling, no lock-in to us.</p></div></div>
+        <div class="principle"><i class="dot"></i><div><h3>Plain communication</h3><p>Written scopes, clear estimates and regular updates. You always know what's being done and why.</p></div></div>
+        <div class="principle"><i class="dot"></i><div><h3>Cost is a design input</h3><p>Every architecture comes with a cost estimate, and every recommendation weighs spend against risk.</p></div></div>
+        <div class="principle"><i class="dot"></i><div><h3>Leave the team stronger</h3><p>Handover includes runbooks and walkthroughs so your people can operate and extend what we built.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark tight">
+    <div class="wrap cta">
+      <div>
+        <h2>Work with us.</h2>
+        <p>Every engagement is led by experienced AWS engineers, from scoping through handover.</p>
+      </div>
+      <div class="cta-actions"><a class="btn btn-primary" href="#contact">Start a conversation</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<div data-view="contact" hidden>
+  <section class="page-head dark">
+    <div class="wrap">
+      <div class="crumbs"><a href="#home">Home</a> / Contact</div>
+      <div class="eyebrow">Contact</div>
+      <h1>Tell us about your AWS project.</h1>
+      <p class="lead">We usually reply within one business day.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap contact-grid">
+      <aside class="contact-aside">
+        <div class="email-box">
+          <span class="label">Email</span>
+          <div class="email-row">
+            <a href="mailto:support@nebulacloud.ca" id="emailText">support@nebulacloud.ca</a>
+            <button class="copy-btn" type="button" data-copy="support@nebulacloud.ca">Copy</button>
+          </div>
+          <p class="form-note">For new projects, support requests and privacy questions.</p>
+        </div>
+        <div class="email-box">
+          <span class="label">What happens next</span>
+          <ul class="ticks">
+            <li>We read your message and reply to set up a short call.</li>
+            <li>We discuss your goals, timeline and constraints.</li>
+            <li>You receive a written proposal with scope and pricing.</li>
+          </ul>
+        </div>
+        <div class="email-box">
+          <span class="label">Hours</span>
+          <p>Monday to Friday, 9:00 a.m. – 5:00 p.m. Eastern Time</p>
+          <p class="form-note">We work with clients across time zones and can schedule calls outside these hours. Existing support clients follow the response targets in their agreement.</p>
+        </div>
+      </aside>
+
+      <div>
+        <form class="card" id="contactForm" novalidate>
+          <div class="row-2">
+            <div class="field"><label for="cf-name">Full name</label><input id="cf-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="cf-email">Work email</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="row-2">
+            <div class="field"><label for="cf-company">Company <span class="opt">(optional)</span></label><input id="cf-company" name="company" autocomplete="organization"></div>
+            <div class="field"><label for="cf-topic">I'm interested in</label>
+              <select id="cf-topic" name="topic" required>
+                <option value="">Choose one</option>
+                <option>Landing zone &amp; architecture</option>
+                <option>Cloud migration</option>
+                <option>Infrastructure as code &amp; DevOps</option>
+                <option>Security &amp; compliance</option>
+                <option>Cost optimization</option>
+                <option>Containers &amp; serverless</option>
+                <option>Managed operations &amp; support</option>
+                <option>Something else</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="cf-message">How can we help?</label><textarea id="cf-message" name="message" required placeholder="A few sentences on your current setup and what you'd like to achieve."></textarea></div>
+          <label class="check" for="cf-consent"><input type="checkbox" id="cf-consent" required><span>I agree that Nebula Cloud may use the information above to respond to my inquiry, as described in the <a href="#privacy">Privacy Notice</a>.</span></label>
+          <p class="form-error" id="formError" hidden></p>
+          <div><button class="btn btn-primary" type="submit">Prepare my message</button></div>
+          <p class="form-note">Your message opens in your email app, addressed to support@nebulacloud.ca, so you can review it before sending.</p>
+        </form>
+
+        <div class="result" id="formResult" hidden>
+          <h3>Your message is ready</h3>
+          <p>Open it in your email app and press send, or copy it and email it to <strong>support@nebulacloud.ca</strong>.</p>
+          <pre id="resultText"></pre>
+          <div class="result-actions">
+            <a class="btn btn-primary" id="mailtoBtn" href="mailto:support@nebulacloud.ca">Open in email app</a>
+            <button class="btn btn-ghost" type="button" id="copyMsg">Copy message</button>
+            <button class="btn btn-ghost" type="button" id="editMsg">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= TERMS ================= -->
+<div data-view="terms" hidden>
+  <section class="page-head dark">
+    <div class="wrap">
+      <div class="crumbs"><a href="#home">Home</a> / Terms &amp; Conditions</div>
+      <div class="eyebrow">Legal</div>
+      <h1>Terms &amp; Conditions</h1>
+    </div>
+  </section>
+  <section class="band tight">
+    <div class="wrap legal">
+      <nav class="toc" aria-label="Sections">
+        <b>On this page</b>
+        <a href="#t-1">1. About these terms</a><a href="#t-2">2. Use of the website</a><a href="#t-3">3. No professional advice</a><a href="#t-4">4. Consulting services</a><a href="#t-5">5. Intellectual property</a><a href="#t-6">6. Third-party links</a><a href="#t-7">7. Disclaimer of warranties</a><a href="#t-8">8. Limitation of liability</a><a href="#t-9">9. Indemnity</a><a href="#t-10">10. Privacy</a><a href="#t-11">11. Governing law</a><a href="#t-12">12. Changes</a><a href="#t-13">13. Contact</a>
+      </nav>
+      <article class="legal-body">
+        <p class="meta">Effective date: November 10, 2026 · Last updated: November 10, 2026</p>
+
+        <h2 id="t-1">1. About these terms</h2>
+        <p>These Terms &amp; Conditions ("Terms") govern your access to and use of the website at nebulacloud.ca (the "Website"), operated by Nebula Cloud ("Nebula Cloud", "we", "us" or "our"). By using the Website, you agree to these Terms. If you do not agree, please do not use the Website.</p>
+
+        <h2 id="t-2">2. Use of the website</h2>
+        <p>You may use the Website for lawful purposes only. You agree not to:</p>
+        <ul>
+          <li>use the Website in any way that breaks applicable law or regulation;</li>
+          <li>attempt to gain unauthorized access to the Website, its servers or any connected system;</li>
+          <li>introduce malware or interfere with the Website's normal operation;</li>
+          <li>scrape, copy or republish the Website's content for commercial purposes without our written permission; or</li>
+          <li>send unsolicited commercial messages through our contact channels.</li>
+        </ul>
+
+        <h2 id="t-3">3. No professional advice</h2>
+        <p>Content on the Website is provided for general information about our services. It is not technical, security, legal, financial or compliance advice for your specific situation, and you should not rely on it as such. Advice is provided only under a signed agreement with us.</p>
+
+        <h2 id="t-4">4. Consulting services</h2>
+        <p>Any consulting, implementation or support services we provide are governed by a separate written agreement, such as a master services agreement and statement of work (together, a "Services Agreement"). If a Services Agreement conflicts with these Terms, the Services Agreement prevails for those services. Descriptions of services on the Website are not offers and may change without notice.</p>
+
+        <h2 id="t-5">5. Intellectual property</h2>
+        <p>The Website and its content, including text, graphics, the Nebula Cloud name, logo and tagline, are owned by or licensed to Nebula Cloud and are protected by Canadian and international intellectual property laws. You may view and print pages for your own non-commercial reference. No other right or licence is granted.</p>
+        <p>Amazon Web Services, AWS and related names are trademarks of Amazon.com, Inc. or its affiliates. Other product and company names mentioned on the Website are the property of their respective owners. Their use does not imply endorsement by, or affiliation with, those owners.</p>
+
+        <h2 id="t-6">6. Third-party links</h2>
+        <p>The Website may link to websites operated by others. We do not control and are not responsible for their content, availability or privacy practices. A link does not mean we endorse the linked site.</p>
+
+        <h2 id="t-7">7. Disclaimer of warranties</h2>
+        <p>The Website is provided "as is" and "as available". To the fullest extent permitted by law, we make no representations or warranties of any kind, express or implied, about the Website, including warranties of accuracy, completeness, merchantability, fitness for a particular purpose or non-infringement. We do not guarantee that the Website will be uninterrupted, secure or error-free.</p>
+
+        <h2 id="t-8">8. Limitation of liability</h2>
+        <p>To the fullest extent permitted by law, Nebula Cloud and its directors, officers, employees and contractors will not be liable for any indirect, incidental, special, consequential or punitive damages, or for any loss of profits, revenue, data or goodwill, arising from or related to your use of, or inability to use, the Website. Nothing in these Terms limits liability that cannot be limited under applicable law.</p>
+
+        <h2 id="t-9">9. Indemnity</h2>
+        <p>You agree to indemnify and hold harmless Nebula Cloud from any claims, losses or expenses, including reasonable legal fees, arising from your breach of these Terms or your misuse of the Website.</p>
+
+        <h2 id="t-10">10. Privacy</h2>
+        <p>Our collection and use of personal information is described in our <a href="#privacy">Privacy Notice</a>, which forms part of these Terms.</p>
+
+        <h2 id="t-11">11. Governing law</h2>
+        <p>These Terms are governed by the laws of the Province of Ontario and the federal laws of Canada that apply there, without regard to conflict-of-law rules. You agree to submit to the exclusive jurisdiction of the courts located in Ontario for any dispute arising from these Terms or the Website.</p>
+
+        <h2 id="t-12">12. Changes to these terms</h2>
+        <p>We may update these Terms from time to time. The updated version will be posted on this page with a new "Last updated" date. Your continued use of the Website after changes are posted means you accept the updated Terms.</p>
+
+        <h2 id="t-13">13. Contact</h2>
+        <p>Questions about these Terms can be sent to <a href="mailto:support@nebulacloud.ca">support@nebulacloud.ca</a>.</p>
+      </article>
+    </div>
+  </section>
+</div>
+
+<!-- ================= PRIVACY ================= -->
+<div data-view="privacy" hidden>
+  <section class="page-head dark">
+    <div class="wrap">
+      <div class="crumbs"><a href="#home">Home</a> / Privacy Notice</div>
+      <div class="eyebrow">Legal</div>
+      <h1>Privacy Notice</h1>
+    </div>
+  </section>
+  <section class="band tight">
+    <div class="wrap legal">
+      <nav class="toc" aria-label="Sections">
+        <b>On this page</b>
+        <a href="#p-1">1. Who we are</a><a href="#p-2">2. Information we collect</a><a href="#p-3">3. How we use it</a><a href="#p-4">4. Consent</a><a href="#p-5">5. Sharing</a><a href="#p-6">6. Storage &amp; transfers</a><a href="#p-7">7. Retention</a><a href="#p-8">8. Safeguards</a><a href="#p-9">9. Cookies</a><a href="#p-10">10. Your rights</a><a href="#p-11">11. Client data</a><a href="#p-12">12. Children</a><a href="#p-13">13. Changes</a><a href="#p-14">14. Contact &amp; complaints</a>
+      </nav>
+      <article class="legal-body">
+        <p class="meta">Effective date: November 10, 2026 · Last updated: November 10, 2026</p>
+
+        <h2 id="p-1">1. Who we are</h2>
+        <p>Nebula Cloud ("Nebula Cloud", "we", "us" or "our") is a cloud consulting business based in Ontario, Canada. This Privacy Notice explains how we collect, use, disclose and protect personal information through our website at nebulacloud.ca (the "Website") and in the course of our business. We handle personal information in accordance with the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA) and other applicable Canadian privacy laws.</p>
+
+        <h2 id="p-2">2. Information we collect</h2>
+        <p><strong>Information you give us.</strong> When you contact us by email or through the contact form, we collect the information you choose to provide, such as your name, work email address, company name, the service you're interested in and the content of your message.</p>
+        <p><strong>Business contact information.</strong> If you or your organization becomes a client, we collect the contact and billing details needed to deliver services and issue invoices.</p>
+        <p><strong>Technical information.</strong> When you visit the Website, our hosting provider and font provider may automatically receive standard technical information such as your IP address, browser type, device type and the pages requested. We do not use this information to identify you.</p>
+
+        <h2 id="p-3">3. How we use your information</h2>
+        <p>We use personal information to:</p>
+        <ul>
+          <li>respond to your inquiries and schedule consultations;</li>
+          <li>prepare proposals and deliver the services you request;</li>
+          <li>manage our client relationships, invoicing and records;</li>
+          <li>operate, secure and improve the Website; and</li>
+          <li>meet our legal, tax and regulatory obligations.</li>
+        </ul>
+        <p>We do not sell personal information. We will only send you commercial electronic messages, such as newsletters, with your consent and in accordance with Canada's Anti-Spam Legislation (CASL). You can withdraw that consent at any time using the unsubscribe link or by contacting us.</p>
+
+        <h2 id="p-4">4. Consent</h2>
+        <p>We collect, use and disclose personal information with your consent, except where the law permits or requires otherwise. By contacting us, you consent to our use of your information to respond. You may withdraw consent at any time, subject to legal or contractual restrictions; if you do, we may be unable to provide certain services.</p>
+
+        <h2 id="p-5">5. How we share information</h2>
+        <p>We share personal information only as needed with:</p>
+        <ul>
+          <li><strong>Service providers</strong> who help us run our business, such as email, website hosting, accounting and file-storage providers, under contracts that require them to protect it and use it only for the services they provide to us;</li>
+          <li><strong>Professional advisors</strong> such as lawyers and accountants, under a duty of confidentiality;</li>
+          <li><strong>Authorities</strong> where required by law or legal process; and</li>
+          <li><strong>A successor business</strong> in connection with a merger, sale or reorganization, subject to equivalent privacy protections.</li>
+        </ul>
+
+        <h2 id="p-6">6. Where information is stored</h2>
+        <p>We prefer Canadian storage where practical. Some of our service providers may store or process information outside Canada, including in the United States. When that happens, your information may be subject to the laws of that jurisdiction, including lawful access by its authorities. We use contractual and other measures to give it a comparable level of protection.</p>
+
+        <h2 id="p-7">7. Retention</h2>
+        <p>We keep personal information only as long as needed for the purposes described above or as required by law. Inquiries that do not lead to an engagement are generally deleted within 24 months. Client records are kept for as long as required for tax and legal purposes, which in Canada is generally at least six years.</p>
+
+        <h2 id="p-8">8. Safeguards</h2>
+        <p>We protect personal information with safeguards suited to its sensitivity, including access controls, multi-factor authentication, encryption in transit and at rest, and limiting access to people who need it. No method of transmission or storage is completely secure, so we cannot guarantee absolute security.</p>
+
+        <h2 id="p-9">9. Cookies and analytics</h2>
+        <p>The Website does not use advertising or tracking cookies. It loads web fonts from Google Fonts, which means your browser sends a request, including your IP address, to Google's servers. If we add analytics in the future, we will update this notice and, where required, ask for your consent.</p>
+
+        <h2 id="p-10">10. Your rights</h2>
+        <p>You have the right to request access to the personal information we hold about you, to ask us to correct it if it is inaccurate or incomplete, and to withdraw your consent. To make a request, email us at the address below. We will respond within 30 days, as required by PIPEDA, and may need to verify your identity first.</p>
+
+        <h2 id="p-11">11. Information in client environments</h2>
+        <p>When we work in a client's AWS accounts or systems, we may have access to personal information that the client controls. We handle that information only on the client's instructions and under the confidentiality and data-protection terms of our Services Agreement. Requests about that information should be directed to the client.</p>
+
+        <h2 id="p-12">12. Children</h2>
+        <p>The Website and our services are intended for businesses and are not directed to children. We do not knowingly collect personal information from children.</p>
+
+        <h2 id="p-13">13. Changes to this notice</h2>
+        <p>We may update this Privacy Notice from time to time. The current version will always be posted on this page with its "Last updated" date.</p>
+
+        <h2 id="p-14">14. Contact and complaints</h2>
+        <p>Our Privacy Officer is responsible for our compliance with this notice. For questions, access requests or concerns, contact:</p>
+        <p><strong>Privacy Officer, Nebula Cloud</strong><br>Email: <a href="mailto:support@nebulacloud.ca">support@nebulacloud.ca</a><br>Ontario, Canada</p>
+        <p>If you are not satisfied with our response, you may contact the Office of the Privacy Commissioner of Canada at <a href="https://www.priv.gc.ca" target="_blank" rel="noopener">priv.gc.ca</a>.</p>
+      </article>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="#home" aria-label="Nebula Cloud home">
+          <svg aria-hidden="true" style="--tile:#7C3AED"><use href="#mark"></use></svg>
+          <span class="wordmark dark"><b style="color:#FFFFFF">Nebula</b> <span style="color:#C4B5FD">Cloud</span></span>
+        </a>
+        <span class="tagline">Secure. Resilient. Operational.</span>
+        <p style="max-width:36ch">AWS cloud consulting for businesses worldwide.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <a href="#svc-foundations">Landing zones</a>
+        <a href="#svc-migration">Migration</a>
+        <a href="#svc-iac">IaC &amp; DevOps</a>
+        <a href="#svc-security">Security &amp; compliance</a>
+        <a href="#svc-cost">Cost optimization</a>
+        <a href="#svc-operations">Managed operations</a>
+        <a href="#integrations">Integrations</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#terms">Terms &amp; Conditions</a>
+        <a href="#privacy">Privacy Notice</a>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <a href="mailto:support@nebulacloud.ca">support@nebulacloud.ca</a>
+        <span>Serving clients worldwide</span>
+        <span>Mon–Fri, 9–5 ET</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="row">
+        <span>© 2026 Nebula Cloud. All rights reserved.</span>
+        <span><a href="#terms">Terms &amp; Conditions</a> · <a href="#privacy">Privacy Notice</a></span>
+      </div>
+      <p>Amazon Web Services, AWS and related marks are trademarks of Amazon.com, Inc. or its affiliates. Nebula Cloud is an independent consultancy and is not affiliated with or endorsed by Amazon. Other product names are trademarks of their respective owners and are listed to describe compatibility only.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top" hidden>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg>
+</button>
+
+<script>
+(function(){
+  var VIEWS=['home','services','about','contact','terms','privacy'];
+  var TITLES={home:'Nebula Cloud | AWS Cloud Consulting',services:'Services | Nebula Cloud',about:'About | Nebula Cloud',contact:'Contact | Nebula Cloud',terms:'Terms & Conditions | Nebula Cloud',privacy:'Privacy Notice | Nebula Cloud'};
+  var nav=document.getElementById('siteNav'), menuBtn=document.getElementById('menuBtn');
+
+  var current=null;
+  function headerOffset(){ var h=document.querySelector('.site-header'); return (h?h.getBoundingClientRect().height:0)+16; }
+  function smoothTo(y){ window.scrollTo({top:Math.max(0,y),behavior:'smooth'}); }
+  function smoothToEl(el){ smoothTo(el.getBoundingClientRect().top+window.scrollY-headerOffset()); }
+
+  function route(){
+    var h=(location.hash||'').slice(1), view='home', anchor=null;
+    if(VIEWS.indexOf(h)>-1){ view=h; }
+    else if(h){
+      var el=document.getElementById(h);
+      var host=el&&el.closest('[data-view]');
+      if(host){ view=host.getAttribute('data-view'); anchor=el; }
+    }
+    var changed = view!==current; current=view;
+    if(changed){
+      document.querySelectorAll('[data-view]').forEach(function(s){ s.hidden = s.getAttribute('data-view')!==view; });
+      document.querySelectorAll('[data-nav]').forEach(function(a){
+        if(a.getAttribute('data-nav')===view) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+      });
+      document.title=TITLES[view];
+      window.scrollTo({top:0,behavior:'instant'});
+    }
+    nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false');
+    if(anchor){ requestAnimationFrame(function(){ smoothToEl(anchor); }); }
+    else if(!changed){ smoothTo(0); }
+  }
+
+  // Intercept in-page links so every jump scrolls smoothly
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="#"]');
+    if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return;
+    var id=a.getAttribute('href').slice(1);
+    e.preventDefault();
+    if(location.hash.slice(1)!==id){
+      try{ history.pushState(null,'','#'+id); }catch(err){ location.hash=id; return; }
+    }
+    route();
+  });
+  window.addEventListener('popstate',route);
+  window.addEventListener('hashchange',route);
+  route();
+
+  var toTop=document.getElementById('toTop');
+  function onScroll(){ toTop.hidden = window.scrollY<600; }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  toTop.addEventListener('click',function(){ smoothTo(0); });
+  onScroll();
+
+  menuBtn.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',open?'true':'false');
+    menuBtn.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+
+  function copy(text,btn){
+    var done=function(){ var t=btn.textContent; btn.textContent='Copied'; setTimeout(function(){btn.textContent=t;},1600); };
+    try{
+      navigator.clipboard.writeText(text).then(done,function(){ fallback(); });
+    }catch(e){ fallback(); }
+    function fallback(){
+      var target=btn.getAttribute('data-copy')?document.getElementById('emailText'):document.getElementById('resultText');
+      var r=document.createRange(); r.selectNodeContents(target);
+      var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent='Selected, press Ctrl+C';
+    }
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){ copy(b.getAttribute('data-copy'),b); });
+  });
+
+  var form=document.getElementById('contactForm'), err=document.getElementById('formError'),
+      result=document.getElementById('formResult'), out=document.getElementById('resultText'),
+      mailto=document.getElementById('mailtoBtn');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){
+      var first=form.querySelector(':invalid');
+      var label=first&&form.querySelector('label[for="'+first.id+'"]');
+      err.textContent = first&&first.type==='checkbox'
+        ? 'Please confirm you agree to the Privacy Notice so we can respond.'
+        : (first&&first.type==='email'&&first.value ? 'Enter a valid email address, like name@company.ca.'
+        : 'Please fill in "'+(label?label.textContent.replace(/\(optional\)/,'').trim():'this field')+'".');
+      err.hidden=false; if(first) first.focus(); return;
+    }
+    err.hidden=true;
+    var d=Object.fromEntries(new FormData(form));
+    var subject='Inquiry: '+d.topic+(d.company?' ('+d.company+')':'');
+    var body='Name: '+d.name+'\nEmail: '+d.email+(d.company?'\nCompany: '+d.company:'')+'\nInterested in: '+d.topic+'\n\n'+d.message;
+    out.textContent='To: support@nebulacloud.ca\nSubject: '+subject+'\n\n'+body;
+    mailto.href='mailto:support@nebulacloud.ca?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    form.hidden=true; result.hidden=false; smoothToEl(result);
+  });
+  document.getElementById('copyMsg').addEventListener('click',function(){ copy(out.textContent,this); });
+  document.getElementById('editMsg').addEventListener('click',function(){ result.hidden=true; form.hidden=false; });
+})();
+</script>
+</body>
+</html>
